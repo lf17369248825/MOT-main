@@ -1,8 +1,5 @@
-## 基于YOLOv8与Qt的多目标跟踪智能交通路况监控系统
-# 1.演示视频
-https://www.bilibili.com/video/BV1yX4y1m7Fe/?spm_id_from=333.999.0.0<br>
-https://youtu.be/_77LrsXaYzM
-# 2.安装（INSTALL)
+## 基于YOLOv8与Qt的多目标检测以及部署集成系统
+# 1.安装（INSTALL)
 ## 第一步（FIRST STEP) 安装ANACONDA<br>
 1）访问Anaconda官网：https://www.anaconda.com/products/individual<br>
 2）选择相应的操作系统版本并下载对应的安装包（推荐下载64位版本）<br>
@@ -17,13 +14,9 @@ conda create --name 自命名 python=3.9.16<br>
 配置好环境后在含有main.py的工作目录下运行main.py即可，也可以下载以下链接里的压缩包使用exe文件运行：<br>
 https://pan.baidu.com/s/1U9dskWzOouF4y1_s7KnPfg?pwd=Zlad 提取码: Zlad
 
-## Multi-Object Tracking Intelligent Traffic Monitoring System based on YOLOv8 and Qt
+## Multi-target detection and deployment integration system based on YOLOv8 and Qt
 
-# 1. Demo Video
-https://www.bilibili.com/video/BV1yX4y1m7Fe/?spm_id_from=333.999.0.0<br>
-https://youtu.be/_77LrsXaYzM
-
-# 2. Installation
+# 1. Installation
 ## First Step: Install Anaconda
 1) Visit the Anaconda official website: https://www.anaconda.com/products/individual<br>
 2) Select the appropriate operating system version and download the corresponding installation package (it is recommended to download the 64-bit version)<br>
