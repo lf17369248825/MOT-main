@@ -115,20 +115,6 @@ def draw_trail(img, bbox, names,object_id, identities=None, offset=(0, 0)):
             thickness = int(np.sqrt(64 / float(i + i)) * 1.5)
             img = cv2.line(img, dic_for_drawing_trails[id][i - 1], dic_for_drawing_trails[id][i], color, thickness)
     return img
-class yolov8_worker(QObject):
-    def init_detectTask(self):
-        self.yolo_predict = YoloPredictor()  #实例化yolo检测
-        self.select_model = self.model_box.currentText() #获取模型框中的模型文本数据        
-        self.yolo_predict.new_model_name = "./weights/%s" % self.select_model  #获取模型路径                          
-        self.yolo_predict.yolo2main_trail_img.connect(lambda x: self.show_image(x, self.pre_video)) #绘制轨迹
-        self.yolo_predict.yolo2main_box_img.connect(lambda x: self.show_image(x, self.res_video))#绘制检测框
-        self.yolo_predict.yolo2main_status_msg.connect(lambda x: self.show_status(x)) #绘制检测状态            
-        self.yolo_predict.yolo2main_fps.connect(lambda x: self.fps_label.setText(x)) #绘制帧率                                 
-        self.yolo_predict.yolo2main_class_num.connect(lambda x:self.Class_num.setText(str(x)))         
-        self.yolo_predict.yolo2main_target_num.connect(lambda x:self.Target_num.setText(str(x)))       
-        self.yolo_predict.yolo2main_progress.connect(lambda x: self.progress_bar.setValue(x))     
-        self.main2yolo_begin_sgl.connect(self.yolo_predict.run)
-        return self.yolo_predict
 
 # yolo推理类 封装
 class YoloPredictor(BasePredictor, QObject):
@@ -519,6 +505,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.Model_name.setText(self.select_model)
         
         # connect 可以将事件和按钮联系在一起 pyqt 中按键执行逻辑是用 connect 来响应动作执行函数
+        self.train_button.clicked.connect(self.Onekey_train)
         self.src_file_button.clicked.connect(self.open_src_file)
         self.sys_setting_button.clicked.connect(self.open_model_file)
         self.src_cam_button.clicked.connect(self.camera_select)
@@ -631,7 +618,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.Target_num.setText('--')
             self.fps_label.setText('--')
 
-
+    def Onekey_train(self):
+        print("start to train.....")
+        #添加数据集路径
+        #添加类别
+        ##############
+        #执行训练
     def open_src_file(self):
         config_file = 'config/fold.json'    
         config = json.load(open(config_file, 'r', encoding='utf-8'))

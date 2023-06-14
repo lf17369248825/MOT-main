@@ -14,45 +14,46 @@ from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDoubleSpinBo
     QMainWindow, QProgressBar, QPushButton, QSizePolicy,
     QSlider, QSpacerItem, QSpinBox, QSplitter,
     QVBoxLayout, QWidget)
-import ui.cmp_res
-
+import ui.cmp_res #图片资源
+#整个的主页面都是在class Ui_MainWindow这个类中设置
 class Ui_MainWindow(object):
+    #   setupUi  QFrame是基本控件的基类，QWidget是QFrame基类
+    #QWidget：就是一个容器
+    #QFrame：也是一个容器，不过是一个有边框的容器
+    #   setupUi在合适的容器中创建一些列widget对象，并把这些对象assigns给参数self
     def setupUi(self, MainWindow):
+        #如果没有给主界面命名，就给主界面命名
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1220, 725)
-        self.Main_QW = QWidget(MainWindow)
+        MainWindow.resize(1220, 725)#主界面size
+        #QWidget
+        self.Main_QW = QWidget(MainWindow)#新建一个指定大小的mianwindow的widget给self
         self.Main_QW.setObjectName(u"Main_QW")
-        self.verticalLayout = QVBoxLayout(self.Main_QW)
+        self.verticalLayout = QVBoxLayout(self.Main_QW)#垂直布局控件self.Main_QW
         self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.Main_QF = QFrame(self.Main_QW)
+        #QFrame继承QWidget 
+        self.Main_QF = QFrame(self.Main_QW)#Main_QF 是左边菜单的背景框
         self.Main_QF.setObjectName(u"Main_QF")
-        self.Main_QF.setStyleSheet(u"QFrame#Main_QF{\n"
-"	background-color: qlineargradient(x0:0, y0:1, x1:1, y1:1,stop:0.4  rgb(0, 205, 102), stop:1 rgb(123 104 238));\n"
-"border:0px solid red;\n"
-"border-radius:30px\n"
-"}")
+        self.Main_QF.setStyleSheet(u"QFrame#Main_QF{\n""	background-color: qlineargradient(x0:0, y0:1, x1:1, y1:1,stop:0.4  rgb(0,121,158), stop:1 rgb(123 104 238));\n""border:0px solid red;\n""border-radius:30px\n""}")
         self.main_qframe = QHBoxLayout(self.Main_QF)
         self.main_qframe.setSpacing(0)
         self.main_qframe.setObjectName(u"main_qframe")
         self.main_qframe.setContentsMargins(0, 0, 0, 0)
-        self.LeftMenuBg = QFrame(self.Main_QF)
+        #左边菜单
+        self.LeftMenuBg = QFrame(self.Main_QF)#继承背景框的菜单框
         self.LeftMenuBg.setObjectName(u"LeftMenuBg")
         self.LeftMenuBg.setMinimumSize(QSize(68, 0))
         self.LeftMenuBg.setMaximumSize(QSize(68, 16777215))
-        self.LeftMenuBg.setStyleSheet(u"QFrame#LeftMenuBg{\n"
-"	background-color: rgba(255, 255, 255,0);\n"
-"border:0px solid red;\n"
-"border-radius:30px\n"
-"}")
+        self.LeftMenuBg.setStyleSheet(u"QFrame#LeftMenuBg{\n""	background-color: rgba(255, 255, 255,0);\n""border:0px solid red;\n""border-radius:30px\n""}")
         self.LeftMenuBg.setFrameShape(QFrame.NoFrame)
         self.LeftMenuBg.setFrameShadow(QFrame.Raised)
         self.verticalLayout_2 = QVBoxLayout(self.LeftMenuBg)
         self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(0, 0, 0, -1)
+        #顶部logo
         self.TopLogoInfo = QFrame(self.LeftMenuBg)
         self.TopLogoInfo.setObjectName(u"TopLogoInfo")
         self.TopLogoInfo.setEnabled(True)
@@ -70,8 +71,6 @@ class Ui_MainWindow(object):
         self.logo.setSizePolicy(sizePolicy)
         self.logo.setMinimumSize(QSize(50, 50))
         self.logo.setMaximumSize(QSize(50, 50))
-
-    
         self.logo.setStyleSheet(u"image: url(:/all/img/logo.png);\n")
         self.Author = QLabel(self.TopLogoInfo)
         self.Author.setObjectName(u"Author")
@@ -92,7 +91,7 @@ class Ui_MainWindow(object):
         self.Title.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_2.addWidget(self.TopLogoInfo)
-
+        #切换菜单框
         self.ToggleBox = QFrame(self.LeftMenuBg)
         self.ToggleBox.setObjectName(u"ToggleBox")
         self.ToggleBox.setMinimumSize(QSize(200, 80))
@@ -150,12 +149,11 @@ class Ui_MainWindow(object):
         self.ToggleBotton.setIcon(icon)
         self.ToggleBotton.setAutoDefault(False)
         self.ToggleBotton.setFlat(False)
-
+        #菜单折叠的文字描述区域
         self.verticalLayout_4.addWidget(self.ToggleBotton)
-
-
+        #左侧菜单区域
         self.verticalLayout_2.addWidget(self.ToggleBox)
-
+        #MenuBox 继承 LeftMenuBg
         self.MenuBox = QFrame(self.LeftMenuBg)
         self.MenuBox.setObjectName(u"MenuBox")
         self.MenuBox.setMinimumSize(QSize(200, 0))
@@ -167,10 +165,30 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
         self.verticalLayout_5.setSizeConstraint(QLayout.SetDefaultConstraint)
         self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
-
-       
-        
-
+        #添加一键训练的控件
+        self.train_button = QPushButton(self.MenuBox)
+        self.train_button.setObjectName(u"src_file_button")
+        self.train_button.setMinimumSize(QSize(0, 45))
+        self.train_button.setCursor(QCursor(Qt.PointingHandCursor))
+        self.train_button.setStyleSheet(u"QPushButton{\n"
+"background-image: url(:/all/img/file.png);\n"
+"background-repeat: no-repeat;\n"
+"background-position: left center;\n"
+"border: none;\n"
+"border-left: 23px solid transparent;\n"
+"\n"
+"text-align: center;\n"
+"padding-left: 0px;\n"
+"color: rgba(255, 255, 255, 199);\n"
+"font: 700 12pt \"Nirmala UI\";\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"background-color: rgba(114, 129, 214, 59);\n"
+"}")
+        # 把文件添加控件
+        self.verticalLayout_5.addWidget(self.train_button)
+        #添加一个打开文件的控件
         self.src_file_button = QPushButton(self.MenuBox)
         self.src_file_button.setObjectName(u"src_file_button")
         self.src_file_button.setMinimumSize(QSize(0, 45))
@@ -191,7 +209,7 @@ class Ui_MainWindow(object):
 "QPushButton:hover{\n"
 "background-color: rgba(114, 129, 214, 59);\n"
 "}")
-        # 添加控件
+        # 把文件添加控件
         self.verticalLayout_5.addWidget(self.src_file_button)
 
         #配置一个控件
@@ -215,7 +233,7 @@ class Ui_MainWindow(object):
 "QPushButton:hover{\n"
 "background-color: rgba(114, 129, 214, 59);\n"
 "}")
-        #添加一个控件---垂直分布
+        #把cam_button 加到 verticalLayout_5上
         self.verticalLayout_5.addWidget(self.src_cam_button)
 
         self.src_rtsp_button = QPushButton(self.MenuBox)
@@ -1644,7 +1662,7 @@ class Ui_MainWindow(object):
         self.verticalLayout.addWidget(self.Main_QF)
 
         MainWindow.setCentralWidget(self.Main_QW)
-
+        #
         self.retranslateUi(MainWindow)
 
         self.ToggleBotton.setDefault(False)
@@ -1656,13 +1674,15 @@ class Ui_MainWindow(object):
 
 
         QMetaObject.connectSlotsByName(MainWindow)
-    # setupUi
-
+    
+    #   retranslateUi
+    #   retranslateU给这些widgets赋值文本和标题，需要翻译的顺便翻译了
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"主窗口", None))
         self.Author.setText(QCoreApplication.translate("MainWindow", u"", None))
         self.Title.setText(QCoreApplication.translate("MainWindow", u"MOT", None))
         self.ToggleBotton.setText(QCoreApplication.translate("MainWindow", u"隐藏", None))
+        self.train_button.setText(QCoreApplication.translate("MainWindow", u"一键训练", None))
         self.src_file_button.setText(QCoreApplication.translate("MainWindow", u"本地文件", None))
         self.src_cam_button.setText(QCoreApplication.translate("MainWindow", u"调用摄像头", None))
         self.src_rtsp_button.setText(QCoreApplication.translate("MainWindow", u"   调用RTSP监控", None))
@@ -1700,5 +1720,5 @@ class Ui_MainWindow(object):
         self.save_txt_button.setText(QCoreApplication.translate("MainWindow", u"保存检测信息(.txt)", None))
         self.status_bar.setText(QCoreApplication.translate("MainWindow", u"Welcome!", None))
         self.show_labels_checkbox.setText(QCoreApplication.translate("MainWindow", u"显示标签", None))
-    # retranslateUi
+    
 
