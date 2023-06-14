@@ -1,5 +1,6 @@
 ## 基于YOLOv8与Qt的多目标检测以及部署集成系统
 # 1.安装（INSTALL)
+####   66666
 ## 第一步（FIRST STEP) 安装ANACONDA<br>
 1）访问Anaconda官网：https://www.anaconda.com/products/individual<br>
 2）选择相应的操作系统版本并下载对应的安装包（推荐下载64位版本）<br>
